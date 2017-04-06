@@ -43,8 +43,8 @@ class SerialTerminal(object):
             self.thread.setDaemon(1)
             self.alive.set()
             self.thread.start()
-            self.serial.rts = True
-            self.serial.dtr = True
+            # self.serial.rts = True
+            # self.serial.dtr = True
 
 
     def stop(self):
@@ -108,6 +108,7 @@ class SerialTerminal(object):
         # open the serial port, throw exception to caller.
         self.serial.open()
         self.settings = self.serial.get_settings()
+        self.settings['port'] = self.serial.portstr
         print("Serial {} open on {} [{},{},{},{}{}{}]".format(
             self.role,
             self.serial.portstr,
